@@ -11,14 +11,12 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NotFoundPage from "./pages/NotFoundPage";
 import { useEffect } from "react";
 import { getUserCredentials } from "./helpers/getUser";
-import { useAppDispatch } from "./app/hooks";
 import Cookies from "universal-cookie"
 const queryClient = new QueryClient();
 export const cookies = new Cookies()
 function App() {
-  const dispatch = useAppDispatch()
   useEffect(() => {
-    getUserCredentials(dispatch)
+    getUserCredentials()
 	}, []);
   return (
     <QueryClientProvider client={queryClient}>

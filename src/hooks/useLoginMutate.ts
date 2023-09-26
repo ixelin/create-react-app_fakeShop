@@ -5,7 +5,6 @@ import { User } from "../types/User";
 import { useNavigate } from "react-router-dom";
 import { cookies } from "../App";
 import { getUserCredentials } from "../helpers/getUser";
-import { useAppDispatch } from "../app/hooks";
 
 async function login(loginData: Partial<User>): Promise<{ token: string }> {
   const response = await axios.post(`${BASE_URL}/auth/login`, loginData);
@@ -13,11 +12,10 @@ async function login(loginData: Partial<User>): Promise<{ token: string }> {
 }
 export const useLoginMutate = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
   return useMutation(login, {
     onSuccess: async (data) => {
       cookies.set("token", data.token);
-      getUserCredentials(dispatch)
+      getUserCredentials()
       navigate("/products");
     },
     onError: (error: AxiosError) => {

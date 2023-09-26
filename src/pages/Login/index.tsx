@@ -12,6 +12,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useLoginMutate } from "../../hooks/useLoginMutate";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
+import axios, { AxiosResponse } from "axios";
+import { BASE_URL } from "../../utils/consts";
+import { User } from "../../types/User";
 
 interface LoginForm {
   username: string;
@@ -35,11 +38,20 @@ const LoginPage = () => {
   const onSubmit = (data: LoginForm) => {
     mutate(data);
   };
-  const user = useAppSelector((state) => state.user.user);
-  if(user) {
-    return <Navigate to='/'/>
+  async function handleGetUsers() {
+    try {
+      const response: AxiosResponse<User[]> = await axios.get(`${BASE_URL}/users`);
+      const data: User[] = response.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  
+  const user = useAppSelector((state) => state.user.user);
+  if (user) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Container
       component="main"
@@ -117,6 +129,13 @@ const LoginPage = () => {
             sx={{ mt: 3, mb: 2, background: "white", color: "black" }}
           >
             Sign in
+          </Button>
+          <Button
+            fullWidth
+            sx={{ mt: 3, mb: 2, background: "green", color: "white" }}
+            onClick={handleGetUsers}
+          >
+            Get All Users in Console
           </Button>
         </Box>
       </Box>

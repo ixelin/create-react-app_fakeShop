@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import Link from React Router DOM
+import { Link, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,24 +15,21 @@ import MenuItem from "@mui/material/MenuItem";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { ModalTitle } from "../../enums/ModalTitle";
 import BaseModal from "../modal";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { cookies } from "../../App";
 import { getUserCredentials } from "../../helpers/getUser";
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState<"" | ModalTitle>("");
   const user = useAppSelector((state) => state.user.user);
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  // @ts-ignore
-  const handleOpenNavMenu = (event) => {
+  const navigate = useNavigate();
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  // @ts-ignore
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -55,11 +52,11 @@ const Header = () => {
     openModal();
   };
   const handleLogout = async () => {
-    handleCloseUserMenu()
-    navigate("/")
-    cookies.set("token", null)
-    getUserCredentials(dispatch)
-  }
+    handleCloseUserMenu();
+    navigate("/");
+    cookies.set("token", null);
+    getUserCredentials();
+  };
   return (
     <AppBar position="static" sx={{ backgroundColor: "#4c0e2b" }}>
       <Container maxWidth="xl">

@@ -39,18 +39,6 @@ const schema = yup.object().shape({
     .required("Price is required"),
 });
 
-const modalStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
-
-const contentStyle = {
-  backgroundColor: "white",
-  padding: "1rem",
-  borderRadius: "4px",
-};
-
 interface BaseModalProps {
   open: boolean;
   onClose: () => void;
@@ -123,10 +111,20 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
       onClose={handleClose}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
-      sx={modalStyle}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       <Fade in={open}>
-        <div style={contentStyle}>
+        <div
+          style={{
+            backgroundColor: "white",
+            padding: "1rem",
+            borderRadius: "4px",
+          }}
+        >
           <Typography variant="h6" id="modal-title">
             {title}
           </Typography>
@@ -135,7 +133,7 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
               name="title"
               control={control}
               render={({ field }) => (
-                <div style={{width:'50vw'}}>
+                <div style={{ width: "50vw" }}>
                   <TextField
                     label="Title"
                     variant="outlined"
@@ -155,7 +153,7 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
               name="price"
               control={control}
               render={({ field }) => (
-                <div style={{width:'50vw'}}>
+                <div style={{ width: "50vw" }}>
                   <TextField
                     label="Price"
                     variant="outlined"
@@ -175,7 +173,7 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
               name="image"
               control={control}
               render={({ field }) => (
-                <div style={{width:'50vw'}}>
+                <div style={{ width: "50vw" }}>
                   <TextField
                     label="Image URL"
                     variant="outlined"
@@ -195,7 +193,7 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
               name="description"
               control={control}
               render={({ field }) => (
-                <div style={{width:'50vw'}}>
+                <div style={{ width: "50vw" }}>
                   <TextField
                     label="Description"
                     variant="outlined"
@@ -211,7 +209,7 @@ const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
                 </div>
               )}
             />
-            <div style={{width:'50vw'}}>
+            <div style={{ width: "50vw" }}>
               <InputLabel id="category-label">Category</InputLabel>
               <Controller
                 name="category"
