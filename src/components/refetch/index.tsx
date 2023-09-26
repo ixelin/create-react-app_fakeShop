@@ -7,6 +7,7 @@ interface RefetchProps {
 }
 
 const Refetch: React.FC<RefetchProps> = ({ refetch, clear }) => {
+  //? single product page doesn't have clear button (since it has inital data, which does not need to get cleared)
   return (
     <Box>
       <Button
@@ -22,7 +23,6 @@ const Refetch: React.FC<RefetchProps> = ({ refetch, clear }) => {
       >
         Request Data from Server
       </Button>
-      //? single product page doesn't have clear button (since it has inital data, which does not need to get cleared)
       {clear && (
         <Button
           variant="outlined"
