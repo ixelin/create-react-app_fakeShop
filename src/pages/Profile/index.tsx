@@ -13,6 +13,7 @@ import { Navigate } from 'react-router-dom';
 
 const ProfilePage = () => {
   const user = useAppSelector((state) => state.user.user);
+  //? if user is not logged in, they cant check profile page
   if(!user) {
     return <Navigate to='/'/>
   }

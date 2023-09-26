@@ -49,6 +49,7 @@ const ProductPage = () => {
   };
 
   const handleDelete = () => {
+    //?  because we have to use tanstack for delete request
     if (product && product.id > 20) {
       alert(
         "You cant delete customly created products with this, because delete request is sent to server. Press get requests on products page"

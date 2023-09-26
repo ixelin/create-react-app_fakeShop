@@ -23,6 +23,7 @@ const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  //? title for dynamically change modal using props
   const [title, setTitle] = useState<"" | ModalTitle>("");
   const user = useAppSelector((state) => state.user.user);
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const Header = () => {
   const handleLogout = async () => {
     handleCloseUserMenu();
     navigate("/");
+    //? token cookies are set to null and the update function is called
     cookies.set("token", null);
     getUserCredentials();
   };

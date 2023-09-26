@@ -19,6 +19,8 @@ const ProductList = () => {
   const navigate = useNavigate();
   const { data, error, isLoading, isError, refetch } = useProductsQuery();
   const dispatch = useAppDispatch()
+  //! tanstack query is used for fetching products here
+  //? i made it on click, in order for app to differentiate between cached and server data, to apply changes to the cache, as per task
   data && dispatch(setProducts(data))
   const products = useAppSelector((state) => state.product.products);
   const queryClient = useQueryClient()

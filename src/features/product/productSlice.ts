@@ -10,7 +10,6 @@ const initialState: TInitialState = {
   product: null,
   products: [],
 };
-
 const productSlice = createSlice({
   name: "product",
   initialState,

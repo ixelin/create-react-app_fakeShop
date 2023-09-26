@@ -38,6 +38,7 @@ const LoginPage = () => {
   const onSubmit = (data: LoginForm) => {
     mutate(data);
   };
+  //! this function makes it easier to check login functionality
   async function handleGetUsers() {
     try {
       const response: AxiosResponse<User[]> = await axios.get(`${BASE_URL}/users`);
@@ -48,8 +49,9 @@ const LoginPage = () => {
     }
   }
   const user = useAppSelector((state) => state.user.user);
+  //? after login, user is sent back
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/products" />;
   }
 
   return (

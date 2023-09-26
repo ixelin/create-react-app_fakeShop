@@ -14,6 +14,7 @@ export const useLoginMutate = () => {
   const navigate = useNavigate();
   return useMutation(login, {
     onSuccess: async (data) => {
+      //! cookies are set to token, then function that handles auth is called
       cookies.set("token", data.token);
       getUserCredentials()
       navigate("/products");

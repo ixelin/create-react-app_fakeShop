@@ -5,6 +5,7 @@ import { TDecoded } from "../types/TDecoded";
 import { cookies } from '../App';
 import { setUser } from "../features/user/userSlice";
 import store from "../app/store";
+//! this function handles user auth state
 export async function getUserCredentials() {
   const token = cookies.get("token")
   if (token) {

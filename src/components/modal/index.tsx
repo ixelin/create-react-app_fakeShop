@@ -46,6 +46,7 @@ interface BaseModalProps {
 }
 
 const BaseModal: React.FC<BaseModalProps> = ({ open, onClose, title }) => {
+  //! mutations are called differently based on title prop, which determines why it was opened
   const { mutate: patch } = usePatchProductMutate();
   const { mutate: create } = usePostProductMutate();
   const product: Product | null = useAppSelector(
